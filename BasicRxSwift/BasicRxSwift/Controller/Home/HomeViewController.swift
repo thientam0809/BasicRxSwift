@@ -44,11 +44,25 @@ final class HomeViewController: UIViewController {
     }
 
     @objc private func changeAvatar() {
-        let img = UIImage(systemName: "face.smiling")
-        image.accept(img)
+//        let img = UIImage(systemName: "face.smiling")
+//        image.accept(img)
+        let vc = ChangeAvatarViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction private func register(_ sender: UIButton) {
+        HomeModel.shared().register(userName: usernameTextField.text,
+                                    password: passwordTextField.text,
+                                    email: emailTextField.text)
+            .subscribe { done in
+                print("Register successfully")
+            } onError: { error in
+                if let myError = error as? APIError {
+                    print("Register with error: \(myError.localizedDescription)")
+                }
+            } onCompleted: {
+                print("Register completed")
+            }.disposed(by: bag)
 
     }
 

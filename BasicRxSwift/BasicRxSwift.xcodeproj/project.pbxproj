@@ -33,10 +33,11 @@
 		60AF897F28976E07003D6836 /* WeatherCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF897D28976E07003D6836 /* WeatherCityViewController.swift */; };
 		60AF898028976E07003D6836 /* WeatherCityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60AF897E28976E07003D6836 /* WeatherCityViewController.xib */; };
 		60AF89822897C5EB003D6836 /* WeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60AF89812897C5EB003D6836 /* WeatherAPI.swift */; };
+		60B0F59628EAC0EE008B8F4C /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B0F59528EAC0EE008B8F4C /* ViewModelType.swift */; };
 		60BE528528A0B900005C9C0A /* ProvinceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BE528428A0B900005C9C0A /* ProvinceViewModel.swift */; };
 		60C7AF0B2892686C006038FF /* ChangeAvatarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C7AF092892686C006038FF /* ChangeAvatarViewController.swift */; };
 		60C7AF0C2892686C006038FF /* ChangeAvatarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60C7AF0A2892686C006038FF /* ChangeAvatarViewController.xib */; };
-		6D56A7348B0F5FF13576654A /* Pods_BasicRxSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD2EB2A523B0E230BD35FEF /* Pods_BasicRxSwiftTests.framework */; };
+		BC197157617D4671DC65BF63 /* Pods_BasicRxSwift_BasicRxSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3627690D158D99D5AF5A6C7B /* Pods_BasicRxSwift_BasicRxSwiftTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 
 /* Begin PBXFileReference section */
 		1BA84D5B1C4B58340021FD52 /* Pods-BasicRxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift.debug.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		33C1D6B759F9AF509188C33C /* Pods-BasicRxSwift-BasicRxSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftTests.debug.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftTests/Pods-BasicRxSwift-BasicRxSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3627690D158D99D5AF5A6C7B /* Pods_BasicRxSwift_BasicRxSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicRxSwift_BasicRxSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B22E5100440F969DF85A309 /* Pods-BasicRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift.release.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		43B746ACD942435A5CFA44EB /* Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftUITests/Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5DFD81CDB3BD8E3BC3EBC524 /* Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftUITests/Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -89,11 +92,12 @@
 		60AF897D28976E07003D6836 /* WeatherCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCityViewController.swift; sourceTree = "<group>"; };
 		60AF897E28976E07003D6836 /* WeatherCityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherCityViewController.xib; sourceTree = "<group>"; };
 		60AF89812897C5EB003D6836 /* WeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPI.swift; sourceTree = "<group>"; };
+		60B0F59528EAC0EE008B8F4C /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		60BE528428A0B900005C9C0A /* ProvinceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceViewModel.swift; sourceTree = "<group>"; };
 		60C7AF092892686C006038FF /* ChangeAvatarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarViewController.swift; sourceTree = "<group>"; };
 		60C7AF0A2892686C006038FF /* ChangeAvatarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeAvatarViewController.xib; sourceTree = "<group>"; };
 		6FAF9F32CDDA909DC37C8767 /* Pods_BasicRxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicRxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8AD2EB2A523B0E230BD35FEF /* Pods_BasicRxSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicRxSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75A4878EAC29D12B672A8B24 /* Pods-BasicRxSwift-BasicRxSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftTests/Pods-BasicRxSwift-BasicRxSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		A85655B16AC0015F2C7F95D4 /* Pods_BasicRxSwift_BasicRxSwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicRxSwift_BasicRxSwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA2860ECCC5DF27782F6726A /* Pods-BasicRxSwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwiftTests.debug.xcconfig"; path = "Target Support Files/Pods-BasicRxSwiftTests/Pods-BasicRxSwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC78867290E4F05AA47D0F38 /* Pods-BasicRxSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-BasicRxSwiftTests/Pods-BasicRxSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D56A7348B0F5FF13576654A /* Pods_BasicRxSwiftTests.framework in Frameworks */,
+				BC197157617D4671DC65BF63 /* Pods_BasicRxSwift_BasicRxSwiftTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +136,7 @@
 			children = (
 				6FAF9F32CDDA909DC37C8767 /* Pods_BasicRxSwift.framework */,
 				A85655B16AC0015F2C7F95D4 /* Pods_BasicRxSwift_BasicRxSwiftUITests.framework */,
-				8AD2EB2A523B0E230BD35FEF /* Pods_BasicRxSwiftTests.framework */,
+				3627690D158D99D5AF5A6C7B /* Pods_BasicRxSwift_BasicRxSwiftTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,6 +242,7 @@
 				607241AB2890FA0C00D33275 /* Home */,
 				602EA34728B66A74004F1836 /* ActivityIndicator.swift */,
 				6010313228BF63EE005274FD /* index.html */,
+				60B0F59528EAC0EE008B8F4C /* ViewModelType.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -297,6 +302,8 @@
 				43B746ACD942435A5CFA44EB /* Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig */,
 				CA2860ECCC5DF27782F6726A /* Pods-BasicRxSwiftTests.debug.xcconfig */,
 				DC78867290E4F05AA47D0F38 /* Pods-BasicRxSwiftTests.release.xcconfig */,
+				33C1D6B759F9AF509188C33C /* Pods-BasicRxSwift-BasicRxSwiftTests.debug.xcconfig */,
+				75A4878EAC29D12B672A8B24 /* Pods-BasicRxSwift-BasicRxSwiftTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -312,7 +319,7 @@
 				607241732890F9CA00D33275 /* Sources */,
 				607241742890F9CA00D33275 /* Frameworks */,
 				607241752890F9CA00D33275 /* Resources */,
-				8B61C397BB090176C5753A6C /* [CP] Embed Pods Frameworks */,
+				5A82F7B3CFB5DDBB72708E3A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -331,6 +338,7 @@
 				607241892890F9CB00D33275 /* Sources */,
 				6072418A2890F9CB00D33275 /* Frameworks */,
 				6072418B2890F9CB00D33275 /* Resources */,
+				A76745EE58038A1BA43981E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -350,7 +358,7 @@
 				607241932890F9CB00D33275 /* Sources */,
 				607241942890F9CB00D33275 /* Frameworks */,
 				607241952890F9CB00D33275 /* Resources */,
-				8656B61CC1CB04E9A8A6F08A /* [CP] Embed Pods Frameworks */,
+				A337FC78753F77B1B456D592 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -475,14 +483,31 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BasicRxSwiftTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BasicRxSwift-BasicRxSwiftTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8656B61CC1CB04E9A8A6F08A /* [CP] Embed Pods Frameworks */ = {
+		5A82F7B3CFB5DDBB72708E3A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A337FC78753F77B1B456D592 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -499,21 +524,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift-BasicRxSwiftUITests/Pods-BasicRxSwift-BasicRxSwiftUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8B61C397BB090176C5753A6C /* [CP] Embed Pods Frameworks */ = {
+		A76745EE58038A1BA43981E0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift-BasicRxSwiftTests/Pods-BasicRxSwift-BasicRxSwiftTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift-BasicRxSwiftTests/Pods-BasicRxSwift-BasicRxSwiftTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift/Pods-BasicRxSwift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BasicRxSwift-BasicRxSwiftTests/Pods-BasicRxSwift-BasicRxSwiftTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC29387456E5295ECB4B9AB8 /* [CP] Check Pods Manifest.lock */ = {
@@ -555,6 +580,7 @@
 				602FB220289BA7D900777269 /* ProvinceViewController.swift in Sources */,
 				602EA34328B6050D004F1836 /* ViewModel.swift in Sources */,
 				60C7AF0B2892686C006038FF /* ChangeAvatarViewController.swift in Sources */,
+				60B0F59628EAC0EE008B8F4C /* ViewModelType.swift in Sources */,
 				60977BFB289CBE9B00AF091A /* APIRequest.swift in Sources */,
 				60796A2328A36C2C005115D9 /* LoginViewModel.swift in Sources */,
 				60BE528528A0B900005C9C0A /* ProvinceViewModel.swift in Sources */,
@@ -771,7 +797,7 @@
 		};
 		607241A52890F9CB00D33275 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA2860ECCC5DF27782F6726A /* Pods-BasicRxSwiftTests.debug.xcconfig */;
+			baseConfigurationReference = 33C1D6B759F9AF509188C33C /* Pods-BasicRxSwift-BasicRxSwiftTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -797,7 +823,7 @@
 		};
 		607241A62890F9CB00D33275 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC78867290E4F05AA47D0F38 /* Pods-BasicRxSwiftTests.release.xcconfig */;
+			baseConfigurationReference = 75A4878EAC29D12B672A8B24 /* Pods-BasicRxSwift-BasicRxSwiftTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

@@ -25,66 +25,56 @@ final class ProvinceViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         configTableView()
+        handleBinding()
+    }
 
-        viewModel.getData()
-            .subscribe { lists in
-            let subject = Observable.of(lists)
-            subject
-                .bind(to: self.viewModel.provinceModelSubject)
-                .dispose()
-        } onFailure: { error in
-            let alert = UIAlertController(title: "Hello error", message: error.localizedDescription, preferredStyle: .alert)
-            self.present(alert, animated: true, completion: nil)
+    private func handleBinding() {
+        
+        // bind seach to viewModel
+        let textObs = searchController.searchBar.rx.text.orEmpty
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+
+        let input = ProvinceViewModel.Input(reload: Driver.just(()), searchValue: textObs)
+
+        let output = viewModel.transform(input: input)
+
+        // handle data, bind viewModel2View
+        output.cities
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (indexPath, list, cell) in
+            cell.textLabel?.text = list.name
         }.disposed(by: bag)
 
-        handleObservable()
+        // handle error
+        output.error
+            .asDriver(onErrorJustReturn: "")
+            .drive(onNext: { [weak self] error in
+                guard let this = self else { return }
+                this.showAlert(alertMessage: error)
+            })
+            .disposed(by: bag)
 
-        bindToSearchValue()
+        // handle selected
+        tableView.rx.itemSelected
+            .subscribe { [weak self] indexPath in
+            guard let this = self else { return }
+            this.tableView.deselectRow(at: indexPath, animated: false)
+            let vc = LoginViewController()
+            this.navigationController?.pushViewController(vc, animated: false)
+        }
+            .disposed(by: bag)
+    }
+
+    private func showAlert(alertMessage: String) {
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     private func configTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.frame = view.bounds
         view.addSubview(tableView)
-    }
-
-    private func handleObservable() {
-//         create observable
-        viewModel.filterProvinceObs
-            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (index, item, cell) in
-            cell.textLabel?.text = item.name
-
-        }
-            .disposed(by: bag)
-    }
-
-    private func handleDeSelected() {
-        tableView.rx
-            .itemDeselected
-            .subscribe(onNext: { indexPath in
-            print("Deselect with indexPath: \(indexPath)")
-        }).disposed(by: bag)
-    }
-
-    private func handleDelegate() {
-        tableView.rx
-            .setDelegate(self)
-            .disposed(by: bag)
-    }
-
-    private func bindToSearchValue() {
-        searchController.searchBar.rx.text.orEmpty
-            .distinctUntilChanged()
-            .debug()
-            .bind(to: viewModel.searchValueOberver)
-            .disposed(by: bag)
-    }
-}
-
-// MARK: - Extension UITableViewDelegate
-extension ProvinceViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("")
     }
 }

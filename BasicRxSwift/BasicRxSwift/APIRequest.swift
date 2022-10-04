@@ -42,50 +42,19 @@ class APIRequest {
     var param = [String: String]()
     private let bag = DisposeBag()
 
-    func getData() -> Single<[CountryListModel]> {
-        return Single<[CountryListModel]>.create { [weak self] observer in
-            guard let this = self else {
-                return Disposables.create()
-            }
-            // convert to string -> URL -> URLRequest
-            let obs = Observable<String>.just(this.baseURL)
-                .map { urlString -> URL in
-                return URL(string: urlString)!
-            }
-                .map { url -> URLRequest in
-                return URLRequest(url: url)
-            }
-
-            // bien doi Obs this -> obs khac
-            .flatMap { urlRequest -> Observable<(response: HTTPURLResponse, data: Data)> in
-                return URLSession.shared.rx.response(request: urlRequest)
-            }
-
-            obs.subscribe { response, data in
-                do {
-                    let model: CountryModel = try JSONDecoder().decode(CountryModel.self, from: data)
-                    return observer(.success(model.result ?? []))
-                } catch let error {
-                    return observer(.failure(error))
-                }
-            }.disposed(by: this.bag)
-            return Disposables.create()
-        }
-    }
-    
     func getData1() -> Single<[CountryListModel]> {
-        
+
         return Single<[CountryListModel]>.create { [weak self] observer -> Disposable in
             guard let this = self,
-                     let path = URL(string: "https://api.printful.com/countries") else {
+                let path = URL(string: "https://api.printful.com/countries") else {
                 return Disposables.create()
             }
-            
+
             let observable = Observable<URL>.just(path)
                 .map { URLRequest(url: $0) }
                 .flatMap { urlRequest -> Observable<(response: HTTPURLResponse, data: Data)> in
-                    return URLSession.shared.rx.response(request: urlRequest)
-                }
+                return URLSession.shared.rx.response(request: urlRequest)
+            }
 
             observable
                 .subscribe { (response, data) in
@@ -101,6 +70,6 @@ class APIRequest {
 
             return Disposables.create()
         }
-        .observe(on: MainScheduler.instance)
+            .observe(on: MainScheduler.instance)
     }
 }

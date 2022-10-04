@@ -9,35 +9,42 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-class ProvinceViewModel {
-    
-    var provinceModelSubject = PublishSubject<[CountryListModel]>()
-    // luu data thi dung BehaviorSubject
+class ProvinceViewModel: ViewModelType {
 
-    private let isTableHidden = BehaviorRelay<Bool>(value: false)
-    private let searchValueBehavior = BehaviorSubject<String?>(value: "")
-    private let bag = DisposeBag()
+    struct Input {
+        let reload: Driver<Void>
+        let searchValue: Driver<String>
+    }
 
-    let filterProvinceObs: Observable<[CountryListModel]>
-    var searchValueOberver: AnyObserver<String?> { searchValueBehavior.asObserver() }
-    var provinceModelObs: Observable<[CountryListModel]> { provinceModelSubject }
-    var isHiddenObs: Observable<Bool> { isTableHidden.asObservable()}
+    struct Output {
+        let cities: Driver<[CountryListModel]>
+        let error: Driver<String>
+    }
 
-    init() {
-        filterProvinceObs = Observable.combineLatest(
-        searchValueBehavior
-            .map { $0 ?? ""}
-            .startWith("")
-            .throttle(.milliseconds(500), scheduler: MainScheduler.instance), provinceModelSubject
-        )
-            .map({ searchValue, lists in
-                searchValue.isEmpty ? lists : lists.filter({ country in
-                    country.name.lowercased().contains(searchValue.lowercased())
-                })
-            })
+    func transform(input: Input) -> Output {
+        let errorRelay = PublishRelay<String>()
+        let citis = input.reload
+            .asObservable()
+            .flatMapLatest({ APIRequest.shared().getData1() })
+            .asDriver { error -> Driver<[CountryListModel]> in
+            errorRelay.accept(error.localizedDescription)
+            return Driver.just([])
         }
 
-    func getData() -> Single<[CountryListModel]>{
-        return APIRequest.shared().getData1()
+        let citisFilter = Observable.combineLatest(input.searchValue.asObservable()
+                .map { $0 }
+                .startWith("")
+                .throttle(.milliseconds(500), scheduler: MainScheduler.instance),
+            citis.asObservable()
+        )
+            .map { searchValue, lists in
+            searchValue.isEmpty ? lists : lists.filter({ province in
+    province.name.lowercased().contains(searchValue.lowercased())
+})
+        }
+            .asDriver(onErrorJustReturn: [])
+        return Output(cities: citisFilter, error: errorRelay.asDriver(onErrorDriveWith: Driver.just("Error happen")))
     }
+
+    init() { }
 }

@@ -10,77 +10,77 @@ import RxRelay
 import RxSwift
 import RxCocoa
 
-final class LoginViewModel: ViewModel {
-    
-    struct Input {
-        let username: Driver<String>
-        let password: Driver<String>
-        let login: Driver<Void>
-    }
-    
-    struct Output {
-        @Property var usernameValidateMessage: String = ""
-        @Property var passwordValidateMessage: String = ""
-        @Property var isLoginEnabled: Bool = true
-        @Property var isLoading: Bool = false
-        @Property var error: Error?
-    }
-    
-    func transform(_ input: Input, disposeBad: DisposeBag) -> Output {
-        let output = Output()
-        
-        let activityIndicator = ActivityIndicator()
-        
-        
-        // loading
-        let isLoading = activityIndicator.asDriver()
-        isLoading
-            .drive(output.$isLoading)
-            .disposed(by: disposeBad)
-        
-        // validate username
-        let usernameValidate = Driver.combineLatest(input.username, input.login)
-            .map { $0.0 }
-            .map { $0.validPassword() }
-
-        usernameValidate
-            .compactMap { $0?.localizedDescription }
-            .drive(output.$usernameValidateMessage)
-            .disposed(by: disposeBad)
-        
-        // validate password
-        let passwordValidate = Driver.combineLatest(input.password, input.login)
-            .map { $0.0 }
-            .map { $0.validPassword() }
-        
-        passwordValidate
-            .compactMap { $0?.localizedDescription }
-            .drive(output.$passwordValidateMessage)
-            .disposed(by: disposeBad)
-        
-            // validate both
-        let validate = Driver.combineLatest(usernameValidate, passwordValidate)
-            .map { $0 != nil && $1 != nil }
-            .startWith(false)
-        
-        validate
-            .drive(output.$isLoginEnabled)
-            .disposed(by: disposeBad)
-        
-        input.login
-            .withLatestFrom(validate)
-            .filter { $0 }
-            .withLatestFrom(Driver.combineLatest(input.username, input.password))
-//            .flatMapLatest { username, password -> Driver<Void> in
-//                <#code#>
-//            }
-            .drive()
-            .disposed(by: disposeBad)
-        
-        
-        return output
-    }
-}
+//final class LoginViewModel: ViewModel {
+//    
+//    struct Input {
+//        let username: Driver<String>
+//        let password: Driver<String>
+//        let login: Driver<Void>
+//    }
+//    
+//    struct Output {
+//        @Property var usernameValidateMessage: String = ""
+//        @Property var passwordValidateMessage: String = ""
+//        @Property var isLoginEnabled: Bool = true
+//        @Property var isLoading: Bool = false
+//        @Property var error: Error?
+//    }
+//    
+//    func transform(_ input: Input, disposeBad: DisposeBag) -> Output {
+//        let output = Output()
+//        
+//        let activityIndicator = ActivityIndicator()
+//        
+//        
+//        // loading
+//        let isLoading = activityIndicator.asDriver()
+//        isLoading
+//            .drive(output.$isLoading)
+//            .disposed(by: disposeBad)
+//        
+//        // validate username
+//        let usernameValidate = Driver.combineLatest(input.username, input.login)
+//            .map { $0.0 }
+//            .map { $0.validPassword() }
+//
+//        usernameValidate
+//            .compactMap { $0?.localizedDescription }
+//            .drive(output.$usernameValidateMessage)
+//            .disposed(by: disposeBad)
+//        
+//        // validate password
+//        let passwordValidate = Driver.combineLatest(input.password, input.login)
+//            .map { $0.0 }
+//            .map { $0.validPassword() }
+//        
+//        passwordValidate
+//            .compactMap { $0?.localizedDescription }
+//            .drive(output.$passwordValidateMessage)
+//            .disposed(by: disposeBad)
+//        
+//            // validate both
+//        let validate = Driver.combineLatest(usernameValidate, passwordValidate)
+//            .map { $0 != nil && $1 != nil }
+//            .startWith(false)
+//        
+//        validate
+//            .drive(output.$isLoginEnabled)
+//            .disposed(by: disposeBad)
+//        
+//        input.login
+//            .withLatestFrom(validate)
+//            .filter { $0 }
+//            .withLatestFrom(Driver.combineLatest(input.username, input.password))
+////            .flatMapLatest { username, password -> Driver<Void> in
+////                <#code#>
+////            }
+//            .drive()
+//            .disposed(by: disposeBad)
+//        
+//        
+//        return output
+//    }
+//}
 
 //    // input
 //    var username: BehaviorRelay<String?> = BehaviorRelay(value: nil)

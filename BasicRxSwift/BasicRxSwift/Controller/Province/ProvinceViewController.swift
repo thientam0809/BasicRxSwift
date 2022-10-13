@@ -8,8 +8,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
-final class ProvinceViewController: UIViewController {
+final class ProvinceViewController: BaseViewController {
 
     // MARK: - IBOutlet
 
@@ -17,7 +18,7 @@ final class ProvinceViewController: UIViewController {
     let tableView = UITableView()
     let searchController = UISearchController(searchResultsController: nil)
     private let bag = DisposeBag()
-    var viewModel = ProvinceViewModel()
+    var viewModel = ProvinceViewModel(load: .just(()))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,33 +27,31 @@ final class ProvinceViewController: UIViewController {
         navigationItem.searchController = searchController
         configTableView()
         handleBinding()
+        bindView2ViewModel()
     }
 
     private func handleBinding() {
         
-        // bind seach to viewModel
-        let textObs = searchController.searchBar.rx.text.orEmpty
-            .distinctUntilChanged()
-            .asDriver(onErrorJustReturn: "")
-
-        let input = ProvinceViewModel.Input(reload: Driver.just(()), searchValue: textObs)
-
-        let output = viewModel.transform(input: input)
+        viewModel.showLoading.asObservable()
+            .observe(on: MainScheduler.instance)
+            .bind(to: HUD.rx.isAnimating)
+            .disposed(by: bag)
 
         // handle data, bind viewModel2View
-        output.cities
+        viewModel.outputs.cities
             .asDriver(onErrorJustReturn: [])
+            .do(onNext: { _ in self.viewModel.showLoading.accept(false) })
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (indexPath, list, cell) in
             cell.textLabel?.text = list.name
         }.disposed(by: bag)
 
         // handle error
-        output.error
+        viewModel.outputs.error
             .asDriver(onErrorJustReturn: "")
             .drive(onNext: { [weak self] error in
-                guard let this = self else { return }
-                this.showAlert(alertMessage: error)
-            })
+            guard let this = self else { return }
+            this.showAlert(alertMessage: error)
+        })
             .disposed(by: bag)
 
         // handle selected
@@ -60,8 +59,8 @@ final class ProvinceViewController: UIViewController {
             .subscribe { [weak self] indexPath in
             guard let this = self else { return }
             this.tableView.deselectRow(at: indexPath, animated: false)
-            let vc = LoginViewController()
-            this.navigationController?.pushViewController(vc, animated: false)
+//            let vc = LoginViewController()
+//            this.navigationController?.pushViewController(vc, animated: false)
         }
             .disposed(by: bag)
     }
@@ -77,4 +76,24 @@ final class ProvinceViewController: UIViewController {
         tableView.frame = view.bounds
         view.addSubview(tableView)
     }
+    
+    private func bindView2ViewModel() {
+        searchController.searchBar.rx.text
+            .bind(to: viewModel.inputs.searchValue)
+            .disposed(by: bag)
+    }
+}
+
+extension Reactive where Base: SVProgressHUD {
+
+    public static var isAnimating: Binder<Bool> {
+        return Binder(UIApplication.shared) { progressHUD, isVisible in
+            if isVisible {
+                SVProgressHUD.show()
+            } else {
+                SVProgressHUD.dismiss()
+            }
+        }
+    }
+
 }

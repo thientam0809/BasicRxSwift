@@ -9,33 +9,63 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-class ProvinceViewModel: ViewModelType {
+protocol ProvinceViewModelInput {
+    var load: Driver<Void> { get }
+    var searchValue: BehaviorRelay<String?> { get }
+}
 
-    struct Input {
-        let reload: Driver<Void>
-        let searchValue: Driver<String>
+protocol ProvinceViewModelOutput {
+    var cities: Driver<[CountryListModel]> { get }
+    var error: PublishRelay<String> { get }
+    var showLoading: BehaviorRelay<Bool> { get }
+}
+
+protocol ProvinceFeature {
+    var inputs: ProvinceViewModelInput { get }
+    var outputs: ProvinceViewModelOutput { get }
+}
+
+final class ProvinceViewModel: ProvinceFeature, ProvinceViewModelInput, ProvinceViewModelOutput {
+
+    var inputs: ProvinceViewModelInput { return self }
+    var outputs: ProvinceViewModelOutput { return self }
+    private let bag = DisposeBag()
+
+    // inputs
+    var load: Driver<Void>
+    var searchValue: BehaviorRelay<String?> = .init(value: nil)
+
+    // output
+    var cities: Driver<[CountryListModel]> = .just([])
+    var error = PublishRelay<String>()
+    var showLoading: BehaviorRelay<Bool> = .init(value: false)
+
+    init(load: Driver<Void>) {
+        self.load = load
+        bind()
     }
 
-    struct Output {
-        let cities: Driver<[CountryListModel]>
-        let error: Driver<String>
-    }
-
-    func transform(input: Input) -> Output {
-        let errorRelay = PublishRelay<String>()
-        let citis = input.reload
-            .asObservable()
-            .flatMapLatest({ APIRequest.shared().getData1() })
-            .asDriver { error -> Driver<[CountryListModel]> in
-            errorRelay.accept(error.localizedDescription)
+    private func bind() {
+        let citiesTemp = load.asObservable()
+            .do { _ in
+            self.showLoading.accept(true)
+        }
+            .flatMap { _ in
+            APIRequest.shared().getData1()
+        }
+            .do { _ in
+            self.showLoading.accept(false)
+        }
+            .asDriver { error in
+            self.error.accept(error.localizedDescription)
             return Driver.just([])
         }
 
-        let citisFilter = Observable.combineLatest(input.searchValue.asObservable()
-                .map { $0 }
+        cities = Observable.combineLatest(searchValue.asObservable()
+                .compactMap { $0 }
                 .startWith("")
                 .throttle(.milliseconds(500), scheduler: MainScheduler.instance),
-            citis.asObservable()
+                                               citiesTemp.asObservable()
         )
             .map { searchValue, lists in
             searchValue.isEmpty ? lists : lists.filter({ province in
@@ -43,8 +73,5 @@ class ProvinceViewModel: ViewModelType {
 })
         }
             .asDriver(onErrorJustReturn: [])
-        return Output(cities: citisFilter, error: errorRelay.asDriver(onErrorDriveWith: Driver.just("Error happen")))
     }
-
-    init() { }
 }

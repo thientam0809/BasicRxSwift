@@ -1,4 +1,7 @@
 PODS:
+  - Action (5.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -8,23 +11,26 @@ PODS:
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
+  - Action
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
   - SVProgressHUD (= 2.2.5)
 
 SPEC REPOS:
   trunk:
+    - Action
     - RxCocoa
     - RxRelay
     - RxSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 45fd0d964dee65df3f8b74b67adbe3a0725cc077
+PODFILE CHECKSUM: 0e97b737aa5a174a8ef4755b55ab8fc7a49e4431
 
 COCOAPODS: 1.8.0

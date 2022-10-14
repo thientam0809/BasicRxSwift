@@ -9,6 +9,7 @@ target 'BasicRxSwift' do
 	pod 'SVProgressHUD', '2.2.5'
 	pod 'RxSwift', '6.5.0'
     	pod 'RxCocoa', '6.5.0'
+	pod 'Action'
   target 'BasicRxSwiftTests' do
     inherit! :search_paths
     # Pods for testing

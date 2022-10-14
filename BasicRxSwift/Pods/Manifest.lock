@@ -8,6 +8,7 @@ PODS:
   - Moya/RxSwift (15.0.0):
     - Moya/Core
     - RxSwift (~> 6.0)
+  - ObjectMapper (4.2.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -18,7 +19,9 @@ PODS:
 
 DEPENDENCIES:
   - Action
+  - Alamofire
   - Moya/RxSwift (~> 15.0)
+  - ObjectMapper
   - RxCocoa (= 6.5.0)
   - RxSwift (= 6.5.0)
   - SVProgressHUD (= 2.2.5)
@@ -28,6 +31,7 @@ SPEC REPOS:
     - Action
     - Alamofire
     - Moya
+    - ObjectMapper
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -37,11 +41,12 @@ SPEC CHECKSUMS:
   Action: 47f1825511907b4fcd79dd7a7db9526c20f78018
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: f22a0e4385994127ac2bcff191ed8e4528438c07
+PODFILE CHECKSUM: 5658569e169012f81a8d94fcd3ba5a5da8a7d818
 
 COCOAPODS: 1.8.0

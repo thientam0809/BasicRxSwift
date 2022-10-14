@@ -11,6 +11,8 @@ target 'BasicRxSwift' do
     	pod 'RxCocoa', '6.5.0'
 	pod 'Action'
 	pod 'Moya/RxSwift', '~> 15.0'
+	pod 'Alamofire'
+  pod 'ObjectMapper'
   target 'BasicRxSwiftTests' do
     inherit! :search_paths
     # Pods for testing

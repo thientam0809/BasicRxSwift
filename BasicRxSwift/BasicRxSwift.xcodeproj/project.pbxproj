@@ -12,7 +12,7 @@
 		600CAD6D28F56DB100184023 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD6C28F56DB100184023 /* BaseViewController.swift */; };
 		600CAD7328F9156700184023 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD7228F9156700184023 /* Networking.swift */; };
 		600CAD7628F916CA00184023 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 600CAD7428F916CA00184023 /* User.json */; };
-		600CAD7728F916CA00184023 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD7528F916CA00184023 /* User.swift */; };
+		600CAD7928F9184700184023 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD7828F9184700184023 /* User.swift */; };
 		6010313028BF63CE005274FD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010312E28BF63CE005274FD /* WebViewController.swift */; };
 		6010313128BF63CE005274FD /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6010312F28BF63CE005274FD /* WebViewController.xib */; };
 		6010313328BF63EE005274FD /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6010313228BF63EE005274FD /* index.html */; };
@@ -69,7 +69,7 @@
 		600CAD6C28F56DB100184023 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		600CAD7228F9156700184023 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		600CAD7428F916CA00184023 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = ../../../../Downloads/RxTesting/RxTesting/Model/User.json; sourceTree = "<group>"; };
-		600CAD7528F916CA00184023 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../Downloads/RxTesting/RxTesting/Model/User.swift; sourceTree = "<group>"; };
+		600CAD7828F9184700184023 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6010312E28BF63CE005274FD /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6010312F28BF63CE005274FD /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		6010313228BF63EE005274FD /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -278,8 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				600CAD7428F916CA00184023 /* User.json */,
-				600CAD7528F916CA00184023 /* User.swift */,
 				60977BF8289CBCDA00AF091A /* Country.swift */,
+				600CAD7828F9184700184023 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -580,7 +580,7 @@
 				607241AE2890FA3800D33275 /* HomeViewController.swift in Sources */,
 				60796A2028A36BE7005115D9 /* LoginViewController.swift in Sources */,
 				6010313028BF63CE005274FD /* WebViewController.swift in Sources */,
-				600CAD7728F916CA00184023 /* User.swift in Sources */,
+				600CAD7928F9184700184023 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

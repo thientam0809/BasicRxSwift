@@ -10,6 +10,7 @@ target 'BasicRxSwift' do
 	pod 'RxSwift', '6.5.0'
     	pod 'RxCocoa', '6.5.0'
 	pod 'Action'
+	pod 'Moya/RxSwift', '~> 15.0'
   target 'BasicRxSwiftTests' do
     inherit! :search_paths
     # Pods for testing

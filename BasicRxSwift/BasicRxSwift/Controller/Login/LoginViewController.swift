@@ -53,6 +53,20 @@ final class LoginViewController: UIViewController {
             })
             .disposed(by: bag)
         
+        let buttonAction: Action<Void, Void> = Action {
+            return Observable.empty()
+        }
+        
+        submitButton.rx.action = buttonAction
+        
+        submitButton.rx.tap
+            .asObservable()
+            .bind(onNext: { _ in
+                self.viewModel.inputs.loginTap.onNext(())
+            })
+            .disposed(by: bag)
+        
+        // bind viewMode2View
         viewModel.outputs.errorPassword
             .drive(passwordValidationMessageBinder)
             .disposed(by: bag)
@@ -60,10 +74,6 @@ final class LoginViewController: UIViewController {
         viewModel.outputs.submitButtonValidate
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
-        
-        let buttonAction: Action<Void, Void> = Action {
-            return Observable.empty()
-        }
     }
 
     // MARK: - IBAction

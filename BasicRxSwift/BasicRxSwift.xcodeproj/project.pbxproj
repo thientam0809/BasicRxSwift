@@ -10,6 +10,9 @@
 		2540C3A559E3FE3FB3007C96 /* Pods_BasicRxSwift_BasicRxSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A85655B16AC0015F2C7F95D4 /* Pods_BasicRxSwift_BasicRxSwiftUITests.framework */; };
 		523CAEBA75B86887147242E6 /* Pods_BasicRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FAF9F32CDDA909DC37C8767 /* Pods_BasicRxSwift.framework */; };
 		600CAD6D28F56DB100184023 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD6C28F56DB100184023 /* BaseViewController.swift */; };
+		600CAD7328F9156700184023 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD7228F9156700184023 /* Networking.swift */; };
+		600CAD7628F916CA00184023 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = 600CAD7428F916CA00184023 /* User.json */; };
+		600CAD7728F916CA00184023 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600CAD7528F916CA00184023 /* User.swift */; };
 		6010313028BF63CE005274FD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6010312E28BF63CE005274FD /* WebViewController.swift */; };
 		6010313128BF63CE005274FD /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6010312F28BF63CE005274FD /* WebViewController.xib */; };
 		6010313328BF63EE005274FD /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 6010313228BF63EE005274FD /* index.html */; };
@@ -64,6 +67,9 @@
 		43B746ACD942435A5CFA44EB /* Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftUITests/Pods-BasicRxSwift-BasicRxSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5DFD81CDB3BD8E3BC3EBC524 /* Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig"; path = "Target Support Files/Pods-BasicRxSwift-BasicRxSwiftUITests/Pods-BasicRxSwift-BasicRxSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		600CAD6C28F56DB100184023 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		600CAD7228F9156700184023 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		600CAD7428F916CA00184023 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = User.json; path = ../../../../Downloads/RxTesting/RxTesting/Model/User.json; sourceTree = "<group>"; };
+		600CAD7528F916CA00184023 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = ../../../../Downloads/RxTesting/RxTesting/Model/User.swift; sourceTree = "<group>"; };
 		6010312E28BF63CE005274FD /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		6010312F28BF63CE005274FD /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		6010313228BF63EE005274FD /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -208,6 +214,7 @@
 				607241882890F9CB00D33275 /* Info.plist */,
 				60AF89812897C5EB003D6836 /* WeatherAPI.swift */,
 				60977BFA289CBE9B00AF091A /* APIRequest.swift */,
+				600CAD7228F9156700184023 /* Networking.swift */,
 			);
 			path = BasicRxSwift;
 			sourceTree = "<group>";
@@ -270,6 +277,8 @@
 		60977BF7289CBCC200AF091A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				600CAD7428F916CA00184023 /* User.json */,
+				600CAD7528F916CA00184023 /* User.swift */,
 				60977BF8289CBCDA00AF091A /* Country.swift */,
 			);
 			path = Model;
@@ -421,6 +430,7 @@
 				607241842890F9CB00D33275 /* Assets.xcassets in Resources */,
 				60796A2128A36BE7005115D9 /* LoginViewController.xib in Resources */,
 				6010313128BF63CE005274FD /* WebViewController.xib in Resources */,
+				600CAD7628F916CA00184023 /* User.json in Resources */,
 				60AF898028976E07003D6836 /* WeatherCityViewController.xib in Resources */,
 				6010313328BF63EE005274FD /* index.html in Resources */,
 				607241AF2890FA3800D33275 /* HomeViewController.xib in Resources */,
@@ -555,6 +565,7 @@
 				602EA34828B66A74004F1836 /* ActivityIndicator.swift in Sources */,
 				6086A86228939AF70092C96B /* HomeModel.swift in Sources */,
 				6072417B2890F9CA00D33275 /* AppDelegate.swift in Sources */,
+				600CAD7328F9156700184023 /* Networking.swift in Sources */,
 				60AF897F28976E07003D6836 /* WeatherCityViewController.swift in Sources */,
 				60AF89822897C5EB003D6836 /* WeatherAPI.swift in Sources */,
 				60977BF9289CBCDA00AF091A /* Country.swift in Sources */,
@@ -569,6 +580,7 @@
 				607241AE2890FA3800D33275 /* HomeViewController.swift in Sources */,
 				60796A2028A36BE7005115D9 /* LoginViewController.swift in Sources */,
 				6010313028BF63CE005274FD /* WebViewController.swift in Sources */,
+				600CAD7728F916CA00184023 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

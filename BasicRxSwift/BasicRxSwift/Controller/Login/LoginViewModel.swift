@@ -20,7 +20,7 @@ protocol LoginViewModelOutput {
     var errorUsername: Driver<Error?> { get }
     var errorPassword: Driver<Error?> { get }
     var submitButtonValidate: Driver<Bool> { get }
-    var enableButton: Driver<Bool> { get }
+    var loginDone: Driver<Bool> { get }
 }
 
 protocol LoginViewModelFeature {
@@ -42,8 +42,8 @@ final class LoginViewModel: LoginViewModelInput, LoginViewModelOutput, LoginView
     var errorUsername: Driver<Error?> = .just(nil)
     var errorPassword: Driver<Error?> = .just(nil)
     var submitButtonValidate: Driver<Bool> = .just(false)
-    var enableButton: Driver<Bool> = .just(false)
-    
+    var loginDone: Driver<Bool> = .just(false)
+
     init() {
         binding()
     }
@@ -71,9 +71,19 @@ final class LoginViewModel: LoginViewModelInput, LoginViewModelOutput, LoginView
             string.validPassword()
         })
             .asDriver(onErrorJustReturn: nil)
-        
+
         submitButtonValidate = Observable.combineLatest(errorUsername.asObservable(), errorPassword.asObservable(), isEmpty)
         { $0 == nil && $1 == nil && $2 == false }
+            .debug()
+            .asDriver(onErrorJustReturn: false)
+
+        let request = loginTap
+            .asObservable()
+            .flatMap { APIRequest.shared().getInformationUser() }
+
+        loginDone = request
+            .asObservable()
+            .map { !($0.name?.isEmpty ?? false) }
             .debug()
             .asDriver(onErrorJustReturn: false)
     }

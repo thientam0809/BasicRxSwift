@@ -7,6 +7,8 @@
 
 import Foundation
 import RxSwift
+import Moya
+import ObjectMapper
 
 public enum RequestType: String {
     case GET
@@ -71,5 +73,38 @@ class APIRequest {
             return Disposables.create()
         }
             .observe(on: MainScheduler.instance)
+    }
+
+    func getInformationUser() -> Single<User> {
+        return Single<User>.create { [weak self] single -> Disposable in
+            guard let this = self else {
+                return Disposables.create()
+            }
+
+            let request = authenProvider.rx.request(.login(userName: "", password: ""), callbackQueue: .main)
+
+            request
+                .filterSuccessfulStatusCodes()
+                .subscribe { event in
+                switch event {
+                case .success(let response):
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: response.data, options: []) as? [String: Any]
+                        if let json = json {
+                            guard let user = Mapper<User>().map(JSONObject: json) else {
+                                single(.failure(NSError(message: "mapper sai roi, oc cho")))
+                                return
+                            }
+                            single(.success(user))
+                        }
+                    } catch (let error) {
+                        single(.failure(error))
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                }
+                }.disposed(by: this.bag)
+            return Disposables.create()
+        }
     }
 }

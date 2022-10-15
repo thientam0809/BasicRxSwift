@@ -46,13 +46,6 @@ final class LoginViewController: UIViewController {
             .bind(to: viewModel.inputs.password)
             .disposed(by: bag)
         
-        viewModel.outputs.errorUsername
-            .drive(onNext: { [weak self] error in
-                guard let this = self else { return }
-                this.errorUsernameLabel.text = error?.localizedDescription
-            })
-            .disposed(by: bag)
-        
         let buttonAction: Action<Void, Void> = Action {
             return Observable.empty()
         }
@@ -65,8 +58,15 @@ final class LoginViewController: UIViewController {
                 self.viewModel.inputs.loginTap.onNext(())
             })
             .disposed(by: bag)
-        
+
         // bind viewMode2View
+        viewModel.outputs.errorUsername
+            .drive(onNext: { [weak self] error in
+                guard let this = self else { return }
+                this.errorUsernameLabel.text = error?.localizedDescription
+            })
+            .disposed(by: bag)
+
         viewModel.outputs.errorPassword
             .drive(passwordValidationMessageBinder)
             .disposed(by: bag)
@@ -74,12 +74,16 @@ final class LoginViewController: UIViewController {
         viewModel.outputs.submitButtonValidate
             .drive(submitButton.rx.isEnabled)
             .disposed(by: bag)
-    }
-
-    // MARK: - IBAction
-    @IBAction private func submitButtonTouchUpInside(_ sender: UIButton) {
-        let vc = ProvinceViewController()
-        navigationController?.pushViewController(vc, animated: false)
+        
+        viewModel.outputs.loginDone
+            .asObservable()
+            .subscribe { [weak self] event in
+                guard let this = self else { return }
+                if let done = event.element, done {
+                    let vc = ProvinceViewController()
+                    this.navigationController?.pushViewController(vc, animated: false)
+                }
+            }.disposed(by: bag)
     }
 }
 

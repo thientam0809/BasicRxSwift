@@ -52,9 +52,6 @@
                     <color key="tintColor" red="0.0" green="0.58039215690000001" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="SUBMIT"/>
-                    <connections>
-                        <action selector="submitButtonTouchUpInside:" destination="-1" eventType="touchUpInside" id="8fU-vk-dGs"/>
-                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

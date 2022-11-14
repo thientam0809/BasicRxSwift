@@ -40,8 +40,12 @@ final class ProvinceViewModel: ProvinceFeature, ProvinceViewModelInput, Province
     var error = PublishRelay<String>()
     var showLoading: BehaviorRelay<Bool> = .init(value: false)
 
-    init(load: Driver<Void>) {
+    // passing data
+    var nameUser: Driver<User?>
+
+    init(load: Driver<Void>, nameUser: Driver<User?> = .just(nil)) {
         self.load = load
+        self.nameUser = nameUser
         bind()
     }
 
@@ -55,17 +59,23 @@ final class ProvinceViewModel: ProvinceFeature, ProvinceViewModelInput, Province
         }
             .do { _ in
             self.showLoading.accept(false)
-        }
+            }
             .asDriver { error in
-            self.error.accept(error.localizedDescription)
-            return Driver.just([])
-        }
+                self.error.accept(error.localizedDescription)
+            self.showLoading.accept(false)
+                return .just([])
+            }
+//            .catch { errror in
+//                self.error.accept(errror.localizedDescription)
+//                self.showLoading.accept(false)
+//                return .just([])
+//            }
 
         cities = Observable.combineLatest(searchValue.asObservable()
                 .compactMap { $0 }
                 .startWith("")
                 .throttle(.milliseconds(500), scheduler: MainScheduler.instance),
-                                               citiesTemp.asObservable()
+            citiesTemp.asObservable()
         )
             .map { searchValue, lists in
             searchValue.isEmpty ? lists : lists.filter({ province in

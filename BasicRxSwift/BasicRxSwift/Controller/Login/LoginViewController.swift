@@ -79,8 +79,9 @@ final class LoginViewController: UIViewController {
             .asObservable()
             .subscribe { [weak self] event in
                 guard let this = self else { return }
-                if let done = event.element, done {
+                if let done = event.element, let isDone = done?.username, !isDone.isEmpty {
                     let vc = ProvinceViewController()
+                    vc.viewModel = ProvinceViewModel(load: .just(()), nameUser: this.viewModel.loginDone)
                     this.navigationController?.pushViewController(vc, animated: false)
                 }
             }.disposed(by: bag)
@@ -100,14 +101,4 @@ extension LoginViewController {
             vc.errorPasswordLabel.text = message?.localizedDescription
         }
     }
-
-//    var enableSubmitButton: Binder<Bool> {
-//        return Binder(self) { vc, isEnabled in
-////            vc.submitButton.isEnabled = !isEnabled
-////            vc.submitButton.backgroundColor?.withAlphaComponent(isEnabled) ?? 0 ? 1 : 0.4
-////            vc.submitButton.rx.is
-//            vc.submitButton.isEnabled = !isEnabled
-//            vc.submitButton.backgroundColor?.withAlphaComponent(isEnabled) ? 1 : 0.4
-//        }
-//    }
 }

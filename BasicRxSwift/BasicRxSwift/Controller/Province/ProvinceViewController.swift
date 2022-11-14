@@ -22,7 +22,6 @@ final class ProvinceViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Citis"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.searchController = searchController
         configTableView()
@@ -31,7 +30,14 @@ final class ProvinceViewController: BaseViewController {
     }
 
     private func handleBinding() {
-        
+
+        viewModel.nameUser
+            .asDriver(onErrorJustReturn: nil)
+            .map { $0?.email }
+            .debug("texxtt")
+            .drive(navigationItem.rx.title)
+            .disposed(by: bag)
+
         viewModel.showLoading.asObservable()
             .observe(on: MainScheduler.instance)
             .bind(to: HUD.rx.isAnimating)
@@ -40,7 +46,6 @@ final class ProvinceViewController: BaseViewController {
         // handle data, bind viewModel2View
         viewModel.outputs.cities
             .asDriver(onErrorJustReturn: [])
-            .do(onNext: { _ in self.viewModel.showLoading.accept(false) })
             .drive(tableView.rx.items(cellIdentifier: "cell", cellType: UITableViewCell.self)) { (indexPath, list, cell) in
             cell.textLabel?.text = list.name
         }.disposed(by: bag)
@@ -76,7 +81,7 @@ final class ProvinceViewController: BaseViewController {
         tableView.frame = view.bounds
         view.addSubview(tableView)
     }
-    
+
     private func bindView2ViewModel() {
         searchController.searchBar.rx.text
             .bind(to: viewModel.inputs.searchValue)

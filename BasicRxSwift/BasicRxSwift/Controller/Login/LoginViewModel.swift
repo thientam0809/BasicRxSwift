@@ -20,7 +20,7 @@ protocol LoginViewModelOutput {
     var errorUsername: Driver<Error?> { get }
     var errorPassword: Driver<Error?> { get }
     var submitButtonValidate: Driver<Bool> { get }
-    var loginDone: Driver<Bool> { get }
+    var loginDone: Driver<User?> { get }
 }
 
 protocol LoginViewModelFeature {
@@ -42,9 +42,13 @@ final class LoginViewModel: LoginViewModelInput, LoginViewModelOutput, LoginView
     var errorUsername: Driver<Error?> = .just(nil)
     var errorPassword: Driver<Error?> = .just(nil)
     var submitButtonValidate: Driver<Bool> = .just(false)
-    var loginDone: Driver<Bool> = .just(false)
+    var loginDone: Driver<User?> = .just(nil)
 
-    init() {
+    // to pass data
+    var userNameNext: Driver<User?> = .just(nil)
+
+    init(username: BehaviorRelay<String> = .init(value: "")) {
+        self.username = username
         binding()
     }
 
@@ -79,13 +83,18 @@ final class LoginViewModel: LoginViewModelInput, LoginViewModelOutput, LoginView
 
         let request = loginTap
             .asObservable()
-            .flatMap { APIRequest.shared().getInformationUser() }
+            .withLatestFrom(emailAndPasswordObservable)
+            .flatMap { APIRequest.shared().getInformationUser(userName: $0.0, password: $0.1) }
+//            .asDriver { error in
+        // handle error
+//                return Driver.just(nil)
+//            }
 
         loginDone = request
             .asObservable()
-            .map { !($0.name?.isEmpty ?? false) }
+            .compactMap { $0 } 
             .debug()
-            .asDriver(onErrorJustReturn: false)
+            .asDriver(onErrorJustReturn: nil)
     }
 }
 
@@ -93,6 +102,12 @@ extension String {
 
     func validPassword() -> Error? {
         return count < 8 && count > 0 ? NSError.leastThan8Chars : nil
+    }
+}
+
+extension User {
+    static var isEmppty: User {
+        return User(username: "")
     }
 }
 

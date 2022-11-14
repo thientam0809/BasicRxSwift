@@ -39,7 +39,6 @@ class APIRequest {
     // initial
     private init() { }
 
-    let baseURL = "https://api.printful.com/countries"
     var type = RequestType.GET
     var param = [String: String]()
     private let bag = DisposeBag()
@@ -75,13 +74,13 @@ class APIRequest {
             .observe(on: MainScheduler.instance)
     }
 
-    func getInformationUser() -> Single<User> {
+    func getInformationUser(userName: String, password: String) -> Single<User> {
         return Single<User>.create { [weak self] single -> Disposable in
             guard let this = self else {
                 return Disposables.create()
             }
 
-            let request = authenProvider.rx.request(.login(userName: "", password: ""), callbackQueue: .main)
+            let request = authenProvider.rx.request(.login(userName: userName, password: password), callbackQueue: .main)
 
             request
                 .filterSuccessfulStatusCodes()
